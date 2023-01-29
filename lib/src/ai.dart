@@ -1809,7 +1809,7 @@ class AI {
         dataTitle: 'COUNT',
         description:
             'Count of trade items or trade item pieces contained in a logistic unit',
-        regExpString: r'^37(\d{0,4})$'),
+        regExpString: r'^37(\d{0,3})$'),
     '3922': const AI(
         code: '3922',
         type: AIFormatType.VARIABLE_LENGTH_MEASURE,
