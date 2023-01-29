@@ -125,13 +125,14 @@ class GS1VariableLengthParser extends GS1ElementParser {
   ParsedElementWithRest call(
       String data, AI ai, GS1BarcodeParserConfig config) {
     final posOfGS = data.indexOf(config.groupSeparator);
-    final offset = posOfGS == -1 ? data.length : posOfGS;
+    int offset = posOfGS == -1 ? data.length : posOfGS;
     String elementStr;
     if (offset == data.length) {
       //search for the number 10
       final int posOf10 = data.indexOf('10');
       if (posOf10 != -1) {
         elementStr = data.substring(0, posOf10 - 1);
+        offset = posOf10;
       } else {
         elementStr = data;
       }
