@@ -131,7 +131,7 @@ class GS1VariableLengthParser extends GS1ElementParser {
       //search for the number 10
       final int posOf10 = data.indexOf('10');
       if (posOf10 != -1) {
-        elementStr = data.substring(0, posOf10 - 2);
+        elementStr = data.substring(0, posOf10);
         offset = posOf10;
       } else {
         elementStr = data;
