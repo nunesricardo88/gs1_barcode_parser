@@ -133,9 +133,8 @@ class GS1VariableLengthParser extends GS1ElementParser {
       if (validade.substring(0, 2) == '17') {
         String newData;
         newData = data.substring(0, data.length - validade.length);
-        data = newData;
-        elementStr = data;
-        offset = data.length;
+        elementStr = newData;
+        offset = data.length - validade.length;
       }
     }
 
