@@ -134,8 +134,9 @@ class GS1VariableLengthParser extends GS1ElementParser {
         String newData;
         newData = data.substring(0, data.length - validade.length);
         data = newData;
+        elementStr = data;
+        offset = data.length;
       }
-      ;
     }
 
     if (offset == data.length && ai.code != '10') {
