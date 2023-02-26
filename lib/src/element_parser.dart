@@ -127,6 +127,17 @@ class GS1VariableLengthParser extends GS1ElementParser {
     final posOfGS = data.indexOf(config.groupSeparator);
     int offset = posOfGS == -1 ? data.length : posOfGS;
     String elementStr;
+
+    if (ai.code == '10' && data.length > 10) {
+      String validade = data.substring(data.length - 8);
+      if (validade.substring(0, 2) == '17') {
+        String newData;
+        newData = data.substring(0, data.length - validade.length);
+        data = newData;
+      }
+      ;
+    }
+
     if (offset == data.length && ai.code != '10') {
       //search for the number 10
       final int posOf10 = data.indexOf('10');
