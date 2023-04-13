@@ -125,36 +125,8 @@ class GS1VariableLengthParser extends GS1ElementParser {
   ParsedElementWithRest call(
       String data, AI ai, GS1BarcodeParserConfig config) {
     final posOfGS = data.indexOf(config.groupSeparator);
-    int offset = posOfGS == -1 ? data.length : posOfGS;
-    String elementStr;
-
-    if (ai.code == '10' && data.length > 10) {
-      String validade = data.substring(data.length - 8);
-      if (validade.substring(0, 2) == '17') {
-        String newData;
-        newData = data.substring(0, data.length - validade.length);
-        elementStr = newData;
-        offset = data.length - validade.length;
-      }
-    }
-
-    if (offset == data.length && ai.code != '10') {
-      //search for the number 10
-      int posOf10 = data.indexOf('10');
-      if (posOf10 <= 3) {
-        //search for 2nd instance of 10
-        posOf10 = data.indexOf('10', posOf10 + 1);
-      }
-
-      if (posOf10 != -1 && posOf10 > 3) {
-        elementStr = data.substring(0, posOf10);
-        offset = posOf10;
-      } else {
-        elementStr = data;
-      }
-    } else {
-      elementStr = data.substring(0, offset);
-    }
+    final offset = posOfGS == -1 ? data.length : posOfGS;
+    final elementStr = data.substring(0, offset);
 
     if (!verify(elementStr, ai)) {
       throw GS1ParseException(
